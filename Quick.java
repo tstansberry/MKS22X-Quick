@@ -1,18 +1,18 @@
 import java.util.Random;
 
-public class partition {
+public class Quick {
   public static void main(String[] args) {
     int[] ary = {999,999,999,4,1,0,3,2,999,999,999};
-    partition(ary, 0, ary.length - 1);
+    //System.out.println("ANSWER(999): " + quickselect(ary, 10));
+    quicksort(ary);
     System.out.println(printArr(ary));
   }
 
   public static int partition (int [] data, int start, int end) {
     Random rand = new Random();
-    int pivot = rand.nextInt(data.length);
+    int pivot = rand.nextInt(end - start + 1);
 
     swap(data, pivot, 0);
-    System.out.println("Pivot: " + data[0]);
 
     while (start != end) {
       if (data[start + 1] > data[start]) {
@@ -30,6 +30,26 @@ public class partition {
   public static int quickselect(int []data, int k){
     int start = 0;
     int end = data.length - 1;
+
+    boolean finished = false;
+    while (! finished) {
+      int pivot  = partition(data, start, end);
+      if (pivot == k) finished = true;
+      else if (pivot < k) start = pivot + 1;
+      else end = pivot - 1;
+    }
+    return data[k];
+  }
+
+  public static void quicksort(int[] data) {
+    sortHelper(data, 0, data.length - 1);
+  }
+
+  private static void sortHelper(int[] data, int low, int high) {
+    if (low > high) return;
+    int pivot = partition(data, low, high);
+    sortHelper(data, pivot + 1, high);
+    sortHelper(data, low, pivot - 1);
   }
 
   public static String printArr(int[] arr) {
