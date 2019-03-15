@@ -40,10 +40,15 @@ public class Driver2 {
 
         int[] data3 = {78};
         //System.out.println(Arrays.toString(data3));
-        int index3 = Quick.partition(data3, 0, 0);
-        System.out.println("3: " + test(data3, index3,0,0));
-        //System.out.println(Arrays.toString(data3) + "\n");
-
+        try {
+          int index3 = Quick.partition(data3, 0, 0);
+        
+          System.out.println("3: " + test(data3, index3,0,0));
+          //System.out.println(Arrays.toString(data3) + "\n");
+        }
+        catch (IndexOutOfBoundsException e) {
+          e.printStackTrace();
+        }
         int[] data4 = {3, 1};
         int index4 = Quick.partition(data4, 0, 1);
         //System.out.println(Arrays.toString(data4));

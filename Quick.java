@@ -1,10 +1,10 @@
-import java.util.Random;
+import java.util.*;
 
 public class Quick {
   public static void main(String[] args) {
-    int[] ary = {999,999,999,4,1,0,3,2,999,999,999};
+    int[] ary = {5,5,5,5,5,5,5,4};
     //System.out.println("ANSWER(999): " + quickselect(ary, 10));
-    quicksort(ary);
+    System.out.println(quickselect(ary, 0));
     System.out.println(printArr(ary));
   }
 
@@ -12,7 +12,7 @@ public class Quick {
     Random rand = new Random();
     int pivot = rand.nextInt(end - start + 1);
 
-    swap(data, pivot, 0);
+    swap(data, pivot, start);
 
     while (start != end) {
       if (data[start + 1] > data[start]) {
@@ -26,6 +26,7 @@ public class Quick {
     }
     return start;
   }
+
 
   public static int quickselect(int []data, int k){
     int start = 0;
@@ -44,6 +45,7 @@ public class Quick {
   public static void quicksort(int[] data) {
     sortHelper(data, 0, data.length - 1);
   }
+
 
   private static void sortHelper(int[] data, int low, int high) {
     if (low > high) return;
